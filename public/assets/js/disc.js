@@ -120,11 +120,12 @@
      * Handle form submission
      */
     function handleSubmit(event) {
+        event.preventDefault(); // Prevent immediate submission
+        
         const form = event.target;
         
         // Validate all questions answered
         if (!validateForm(form)) {
-            event.preventDefault();
             alert('Please answer all 24 questions before submitting.');
             return;
         }
@@ -135,11 +136,22 @@
 
         // Populate hidden fields
         populateHiddenFields(scores);
+        
+        // Log what we're submitting
+        console.log('Submitting to Netlify Forms with scores:', {
+            D: scores.totals.D,
+            I: scores.totals.I,
+            S: scores.totals.S,
+            C: scores.totals.C,
+            primary: scores.primary,
+            secondary: scores.secondary
+        });
 
-        // Allow native form submission to proceed
-        // Form will POST to Netlify Forms and redirect to /thanks.html
-        console.log('Submitting to Netlify Forms...');
-        // Don't prevent default - let the form submit naturally
+        // Now submit the form with populated fields
+        // Use setTimeout to ensure fields are populated before submission
+        setTimeout(function() {
+            form.submit();
+        }, 100);
     }
 
     /**
