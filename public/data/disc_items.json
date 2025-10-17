@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "items": [
+      {"label": "I naturally take charge when situations become unclear or uncertain.", "dim": "D"},
+      {"label": "I enjoy meeting new people and building connections.", "dim": "I"},
+      {"label": "I am patient and steady when handling tasks.", "dim": "S"},
+      {"label": "I focus on doing things the right way every time.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 2,
+    "items": [
+      {"label": "I am highly competitive and driven to achieve measurable results.", "dim": "D"},
+      {"label": "I bring energy and positivity to group settings.", "dim": "I"},
+      {"label": "I am supportive and considerate of others' feelings.", "dim": "S"},
+      {"label": "I am cautious and prefer to analyze all details before acting.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 3,
+    "items": [
+      {"label": "I prefer to make quick decisions and move forward rapidly.", "dim": "D"},
+      {"label": "I am enthusiastic and talkative in most social settings.", "dim": "I"},
+      {"label": "I remain calm and reliable, even under pressure.", "dim": "S"},
+      {"label": "I prefer to follow established rules and proven systems.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 4,
+    "items": [
+      {"label": "I am comfortable taking significant risks to achieve big wins.", "dim": "D"},
+      {"label": "I value social recognition and being well-liked by others.", "dim": "I"},
+      {"label": "I am loyal and dependable to my team members.", "dim": "S"},
+      {"label": "I value accuracy and pay close attention to detail.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 5,
+    "items": [
+      {"label": "I actively challenge others to perform at their best.", "dim": "D"},
+      {"label": "I can persuade people easily and influence their decisions.", "dim": "I"},
+      {"label": "I avoid conflict and confrontation whenever possible.", "dim": "S"},
+      {"label": "I prefer to plan thoroughly and prepare before taking action.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 6,
+    "items": [
+      {"label": "I am comfortable giving direct, tough feedback when necessary.", "dim": "D"},
+      {"label": "I am spontaneous and enjoy new adventures and experiences.", "dim": "I"},
+      {"label": "I prefer a stable and predictable work environment.", "dim": "S"},
+      {"label": "I am precise and regularly double-check my work for errors.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 7,
+    "items": [
+      {"label": "I am primarily motivated by winning and achieving goals.", "dim": "D"},
+      {"label": "I am motivated by building relationships and social interaction.", "dim": "I"},
+      {"label": "I am motivated by maintaining stability and harmony.", "dim": "S"},
+      {"label": "I am motivated by achieving correctness and following structure.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 8,
+    "items": [
+      {"label": "I immediately take charge when others are hesitating.", "dim": "D"},
+      {"label": "I get excited about sharing new ideas and stories with others.", "dim": "I"},
+      {"label": "I listen carefully to others before expressing my own views.", "dim": "S"},
+      {"label": "I carefully review all instructions before starting any task.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 9,
+    "items": [
+      {"label": "I am assertive and direct when pursuing what I want.", "dim": "D"},
+      {"label": "I love inspiring and energizing groups of people.", "dim": "I"},
+      {"label": "I am dependable and consistently keep my commitments.", "dim": "S"},
+      {"label": "I am disciplined and highly organized in my approach to work.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 10,
+    "items": [
+      {"label": "I want control over how things are done and executed.", "dim": "D"},
+      {"label": "I want freedom and enjoyment in whatever I do.", "dim": "I"},
+      {"label": "I want peace and predictability in my environment.", "dim": "S"},
+      {"label": "I want things done according to established standards.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 11,
+    "items": [
+      {"label": "I communicate directly and get straight to the point.", "dim": "D"},
+      {"label": "I communicate with enthusiasm and expressiveness.", "dim": "I"},
+      {"label": "I communicate calmly and listen more than I speak.", "dim": "S"},
+      {"label": "I communicate precisely with well-thought-out points.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 12,
+    "items": [
+      {"label": "In conflicts, I confront issues head-on to resolve them quickly.", "dim": "D"},
+      {"label": "In conflicts, I try to smooth things over and maintain relationships.", "dim": "I"},
+      {"label": "In conflicts, I seek compromise and avoid escalation.", "dim": "S"},
+      {"label": "In conflicts, I analyze the situation logically before responding.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 13,
+    "items": [
+      {"label": "I prefer to work independently and make my own decisions.", "dim": "D"},
+      {"label": "I prefer to work in collaborative, social team environments.", "dim": "I"},
+      {"label": "I prefer to work in supportive, harmonious team settings.", "dim": "S"},
+      {"label": "I prefer to work with clear guidelines and quality standards.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 14,
+    "items": [
+      {"label": "Under pressure, I become more focused and decisive.", "dim": "D"},
+      {"label": "Under pressure, I rally others and maintain optimism.", "dim": "I"},
+      {"label": "Under pressure, I remain steady and supportive of the team.", "dim": "S"},
+      {"label": "Under pressure, I analyze carefully and proceed cautiously.", "dim": "C"}
+    ]
+  },
+  {
+    "id": 15,
+    "items": [
+      {"label": "I thrive in fast-paced, challenging environments with clear targets.", "dim": "D"},
+      {"label": "I thrive in dynamic, people-focused environments with variety.", "dim": "I"},
+      {"label": "I thrive in consistent, supportive environments with clear expectations.", "dim": "S"},
+      {"label": "I thrive in structured, detail-oriented environments with high standards.", "dim": "C"}
+    ]
+  }
+]

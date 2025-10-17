@@ -1,0 +1,296 @@
+/* Custom styles for DISC Assessment */
+
+/* Focus states for accessibility */
+*:focus-visible {
+    outline: 2px solid #3B82F6;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    header,
+    footer,
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+    }
+    
+    .question-group {
+        page-break-inside: avoid;
+    }
+}
+
+/* Custom progress bar styling */
+progress {
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #E5E7EB;
+    border-radius: 4px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #3B82F6;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+progress::-moz-progress-bar {
+    background-color: #3B82F6;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Radio button enhancements */
+input[type="radio"] {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type="radio"]:hover {
+    transform: scale(1.1);
+}
+
+input[type="radio"]:checked {
+    transform: scale(1.15);
+}
+
+/* Question group hover effect */
+.question-group {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.question-group:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Error state for incomplete groups */
+.question-group.border-red-500 {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, input, select, textarea {
+    transition: all 0.2s ease;
+}
+
+/* Button hover effects */
+button:not(:disabled):hover {
+    transform: translateY(-1px);
+}
+
+button:not(:disabled):active {
+    transform: translateY(0);
+}
+
+/* Link hover underline effect */
+a:not(.no-underline):hover {
+    text-decoration-thickness: 2px;
+}
+
+/* Screen reader only class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}
+
+/* Sticky header shadow on scroll */
+.sticky {
+    position: sticky;
+    top: 0;
+}
+
+.sticky.scrolled {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .question-group {
+        font-size: 0.95rem;
+    }
+    
+    input[type="radio"] {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .question-group {
+        border: 2px solid currentColor;
+    }
+    
+    input[type="radio"] {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    /* Can be enabled if needed */
+    /* body {
+        background-color: #1F2937;
+        color: #F9FAFB;
+    } */
+}
+
+/* Custom scrollbar (WebKit browsers) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F3F4F6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9CA3AF;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6B7280;
+}
+
+/* Ensure proper spacing for form elements */
+form label {
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Error message styling */
+.error-message {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Success checkmark animation */
+@keyframes checkmark {
+    0% {
+        stroke-dashoffset: 50;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.checkmark {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: checkmark 0.5s ease-out forwards;
+}
+
+/* Results preview fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#resultsSummary:not(.hidden) {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Gradient backgrounds (optional enhancements) */
+.gradient-blue {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-green {
+    background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+}
+
+/* Loading state for submit button */
+.button-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.button-loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.6s linear infinite;
+}

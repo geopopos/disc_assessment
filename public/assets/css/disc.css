@@ -1,0 +1,247 @@
+/* DISC Assessment - Likert Scale Styles */
+
+/* Section Headers */
+.section-header {
+    margin: 3rem 0 2rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.section-header:first-of-type {
+    margin-top: 0;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.25rem;
+}
+
+.section-subtitle {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+/* Question Block */
+.q-block {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+/* Alternating backgrounds */
+.q-block:nth-child(even) {
+    background: #f9fafb;
+}
+
+.q-block:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.q-block legend {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    padding: 0;
+}
+
+/* Likert Scale Container */
+.likert {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Pill-style buttons */
+.likert label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 9999px; /* Full pill shape */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    font-weight: 500;
+    font-size: 0.875rem;
+    position: relative;
+    min-height: 44px; /* Touch-friendly */
+}
+
+.likert label:hover {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    transform: scale(1.02);
+}
+
+/* Hide radio button visually but keep accessible */
+.likert input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Checked state - solid blue fill */
+.likert label:has(input:checked) {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border-color: #1d4ed8;
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    transform: scale(1.05);
+}
+
+.likert label:has(input:checked):hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+/* Color hints for unselected buttons */
+.likert label:nth-child(1):not(:has(input:checked)) {
+    border-color: #fca5a5;
+}
+
+.likert label:nth-child(2):not(:has(input:checked)) {
+    border-color: #fecaca;
+}
+
+.likert label:nth-child(3):not(:has(input:checked)) {
+    border-color: #d1d5db;
+}
+
+.likert label:nth-child(4):not(:has(input:checked)) {
+    border-color: #86efac;
+}
+
+.likert label:nth-child(5):not(:has(input:checked)) {
+    border-color: #4ade80;
+}
+
+/* Keyboard focus */
+.likert label:has(input:focus-visible) {
+    outline: 3px solid #3b82f6;
+    outline-offset: 3px;
+}
+
+/* Tablet and Desktop: Horizontal Layout */
+@media (min-width: 640px) {
+    .likert {
+        flex-direction: row;
+        gap: 0.625rem;
+    }
+
+    .likert label {
+        flex: 1;
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8125rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .likert label {
+        padding: 1rem 0.625rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .likert {
+        gap: 0.75rem;
+    }
+    
+    .likert label {
+        padding: 1.125rem 0.75rem;
+    }
+}
+
+/* Focus States for Accessibility */
+.q-block:focus-within {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+}
+
+/* Progress Bar Animations */
+#progressBarFill {
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Question appears animation */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.q-block {
+    animation: slideInUp 0.3s ease-out;
+}
+
+/* Required Indicator (removed - using HTML5 validation) */
+
+/* Results Section Animations */
+#results {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .q-block {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+
+    .likert label {
+        border: 1px solid #000;
+    }
+
+    #results {
+        page-break-before: always;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .likert label {
+        border-width: 3px;
+    }
+
+    .likert label:has(input:checked) {
+        border-width: 4px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .likert label {
+        transition: none;
+    }
+
+    #results {
+        animation: none;
+    }
+}

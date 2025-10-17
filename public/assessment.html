@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your DISC personality assessment - takes just 5 minutes.">
+    <title>DISC Assessment - Take the Test</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/assets/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="/" class="flex items-center space-x-3">
+                        <img src="/assets/logo.svg" alt="DISC Assessment Logo" class="h-10 w-10">
+                        <span class="text-xl font-bold text-gray-900">DISC Assessment</span>
+                    </a>
+                </div>
+                <a href="/privacy.html" class="text-sm text-gray-600 hover:text-gray-900">Privacy</a>
+            </div>
+        </nav>
+
+        <!-- Progress Bar -->
+        <div class="bg-gray-200 h-2">
+            <div class="bg-blue-600 h-2 transition-all duration-300" style="width: 0%" id="progressBarVisual"></div>
+        </div>
+        <div class="bg-white border-t border-gray-200 px-4 py-2">
+            <div class="max-w-6xl mx-auto flex justify-between items-center text-sm">
+                <span id="progressText" class="text-gray-600 font-medium">0 of 15 completed (0%)</span>
+                <progress id="progressBar" max="15" value="0" class="hidden"></progress>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Instructions -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mb-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">DISC Personality Assessment</h1>
+            <p class="text-gray-700 mb-4">
+                For each question group below, select <strong>one adjective that is MOST like you</strong> and 
+                <strong>one that is LEAST like you</strong>. Be honest and choose based on your natural tendencies, 
+                not how you think you should be.
+            </p>
+            <p class="text-sm text-gray-600">
+                ⏱️ Takes approximately 3-4 minutes • All 15 questions must be completed
+            </p>
+        </div>
+
+        <!-- Validation Error Message -->
+        <div id="validationError" role="alert" class="hidden bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
+            <p class="text-red-700 font-medium"></p>
+        </div>
+
+        <!-- Assessment Form -->
+        <form id="assessmentForm" 
+              name="disc-assessment" 
+              method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field"
+              action="/thanks.html"
+              class="space-y-8">
+            
+            <!-- Hidden Netlify Form Fields -->
+            <input type="hidden" name="form-name" value="disc-assessment">
+            
+            <!-- Honeypot -->
+            <div class="hidden">
+                <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            </div>
+
+            <!-- Candidate Information Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-bold text-gray-900 mb-6">Your Information</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="full_name" class="block text-sm font-medium text-gray-700 mb-2">
+                            Full Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" 
+                               id="full_name" 
+                               name="full_name" 
+                               required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="John Smith">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email" 
+                               id="email" 
+                               name="email" 
+                               required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="john@example.com">
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <label for="role_applied_for" class="block text-sm font-medium text-gray-700 mb-2">
+                        Role Applied For <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" 
+                           id="role_applied_for" 
+                           name="role_applied_for" 
+                           required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           placeholder="e.g., Software Engineer, Sales Manager">
+                </div>
+            </div>
+
+            <!-- Questions Container (populated by JavaScript) -->
+            <div id="questionsContainer" class="space-y-6">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+
+            <!-- Results Summary (shown when assessment is complete) -->
+            <div id="resultsSummary" class="hidden">
+                <!-- Results preview will be inserted here -->
+            </div>
+
+            <!-- Hidden Fields for Scores (populated by JavaScript before submit) -->
+            <input type="hidden" name="score_D" id="score_D">
+            <input type="hidden" name="score_I" id="score_I">
+            <input type="hidden" name="score_S" id="score_S">
+            <input type="hidden" name="score_C" id="score_C">
+            <input type="hidden" name="primary_type" id="primary_type">
+            <input type="hidden" name="type_order" id="type_order">
+            <input type="hidden" name="debug_vector" id="debug_vector">
+
+            <!-- Submit Button -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <button type="submit" 
+                        id="submitBtn"
+                        disabled
+                        class="w-full bg-blue-600 text-white font-semibold px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Submit Assessment
+                </button>
+                <p class="text-sm text-gray-500 text-center mt-4">
+                    Complete all 15 questions to enable submission
+                </p>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm mb-4 md:mb-0">&copy; 2025 DISC Assessment. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="/privacy.html" class="text-sm hover:text-white transition">Privacy Policy</a>
+                    <a href="mailto:contact@example.com" class="text-sm hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Modules -->
+    <script type="module">
+        import { loadQuestions, renderQuestions } from './js/questions.js';
+        import { initializeForm } from './js/form.js';
+        import { initializeProgressBar } from './js/ui.js';
+
+        // Initialize the assessment
+        async function initAssessment() {
+            try {
+                // Load questions from JSON
+                await loadQuestions();
+                
+                // Initialize progress bar
+                initializeProgressBar(15);
+                
+                // Render questions
+                const container = document.getElementById('questionsContainer');
+                renderQuestions(container, handleQuestionChange);
+                
+                // Initialize form handling
+                initializeForm();
+                
+                console.log('Assessment initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize assessment:', error);
+                alert('Failed to load assessment. Please refresh the page and try again.');
+            }
+        }
+
+        // Handle question changes for progress updates
+        function handleQuestionChange(groupId) {
+            // Update progress bar visual
+            const progressBar = document.getElementById('progressBar');
+            const progressBarVisual = document.getElementById('progressBarVisual');
+            if (progressBar && progressBarVisual) {
+                const percentage = (progressBar.value / progressBar.max) * 100;
+                progressBarVisual.style.width = `${percentage}%`;
+            }
+        }
+
+        // Start initialization when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAssessment);
+        } else {
+            initAssessment();
+        }
+    </script>
+</body>
+</html>

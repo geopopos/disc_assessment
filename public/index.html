@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Take our 5-minute DISC personality assessment to understand your workplace communication style and strengths.">
+    <title>DISC Assessment - Understand Your Workplace Style</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/assets/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <img src="/assets/logo.svg" alt="DISC Assessment Logo" class="h-10 w-10">
+                    <span class="text-xl font-bold text-gray-900">DISC Assessment</span>
+                </div>
+                <a href="/privacy.html" class="text-sm text-gray-600 hover:text-gray-900">Privacy</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+            <div class="text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6">
+                    Discover Your <span class="text-blue-600">DISC</span> Profile
+                </h1>
+                <p class="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Take our 3-4 minute assessment to understand your workplace communication style, strengths, and how you work best with others.
+                </p>
+                
+                <div class="mb-12">
+                    <a href="/disc.html" 
+                       class="inline-block bg-blue-600 text-white font-semibold px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Start Assessment
+                    </a>
+                    <p class="text-sm text-gray-500 mt-4">No registration required • Takes 5 minutes</p>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 text-left">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Dominance (D)</h3>
+                        <p class="text-sm text-gray-600">Results-focused, direct, decisive leadership style</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Influence (I)</h3>
+                        <p class="text-sm text-gray-600">Enthusiastic, optimistic, people-oriented communicator</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Steadiness (S)</h3>
+                        <p class="text-sm text-gray-600">Patient, loyal, supportive team player</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2">Conscientiousness (C)</h3>
+                        <p class="text-sm text-gray-600">Analytical, precise, quality-focused professional</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is DISC Section -->
+        <section class="bg-white py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">What is DISC?</h2>
+                <div class="prose prose-lg max-w-none text-gray-600">
+                    <p class="mb-4">
+                        DISC is a personality assessment tool that measures four primary behavioral traits. Understanding your DISC profile helps you:
+                    </p>
+                    <ul class="space-y-2 mb-6">
+                        <li>✓ Communicate more effectively with colleagues</li>
+                        <li>✓ Understand your natural work style and preferences</li>
+                        <li>✓ Identify roles where you'll thrive</li>
+                        <li>✓ Build stronger team relationships</li>
+                        <li>✓ Recognize areas for professional development</li>
+                    </ul>
+                    <p>
+                        This assessment takes just 3-4 minutes and provides immediate insights into your workplace personality. It's commonly used in hiring, team building, and professional development.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">How It Works</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                            1
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Answer Questions</h3>
+                        <p class="text-gray-600">Review 15 statements and select which are most and least like you</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                            2
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Get Your Profile</h3>
+                        <p class="text-gray-600">See your scores across all four DISC dimensions instantly</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                            3
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Submit & Connect</h3>
+                        <p class="text-gray-600">Share your results and connect with our team for next steps</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 bg-blue-600">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-4">Ready to Discover Your Profile?</h2>
+                <p class="text-xl text-blue-100 mb-8">Take the assessment now - it only takes 3-4 minutes</p>
+                <a href="/disc.html" 
+                   class="inline-block bg-white text-blue-600 font-semibold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition duration-200 shadow-lg">
+                    Start Assessment
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm mb-4 md:mb-0">&copy; 2025 DISC Assessment. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="/privacy.html" class="text-sm hover:text-white transition">Privacy Policy</a>
+                    <a href="mailto:contact@example.com" class="text-sm hover:text-white transition">Contact</a>
+                </div>
+            </div>
+            <div class="mt-4 text-center text-xs text-gray-500">
+                <p>This assessment is a workplace style indicator, not a medical or psychological diagnosis.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

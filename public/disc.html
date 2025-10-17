@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your DISC personality assessment - takes just 5 minutes.">
+    <title>DISC Assessment - Likert Scale</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/assets/css/disc.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+</head>
+<body class="bg-gray-50">
+    <!-- Header with Progress Bar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="/" class="flex items-center space-x-3">
+                        <img src="/assets/logo.svg" alt="DISC Assessment Logo" class="h-10 w-10">
+                        <span class="text-xl font-bold text-gray-900">DISC Assessment</span>
+                    </a>
+                </div>
+                <a href="/privacy.html" class="text-sm text-gray-600 hover:text-gray-900">Privacy</a>
+            </div>
+        </nav>
+        
+        <!-- Progress Bar -->
+        <div class="border-t border-gray-200">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span id="progressText" class="text-sm font-medium text-gray-700">0 of 24 completed (0%)</span>
+                    <span class="text-xs text-gray-500">⏱️ ~5 min</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                    <div id="progressBarFill" class="bg-gradient-to-r from-blue-500 to-blue-600 h-2.5 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Instructions -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mb-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">DISC Personality Assessment</h1>
+            <p class="text-gray-700 mb-4">
+                Rate each statement on a scale from <strong>Strongly Disagree</strong> to <strong>Strongly Agree</strong>. 
+                Be honest and choose based on your natural tendencies, not how you think you should be.
+            </p>
+            <p class="text-sm text-gray-600">
+                ⏱️ Takes approximately 5 minutes • All 24 questions must be completed
+            </p>
+        </div>
+
+        <!-- Assessment Form -->
+        <form id="discForm" 
+              name="disc-assessment" 
+              method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field"
+              action="/thanks.html">
+            
+            <!-- Hidden Netlify Form Fields -->
+            <input type="hidden" name="form-name" value="disc-assessment">
+            
+            <!-- Honeypot -->
+            <div class="hidden">
+                <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            </div>
+
+            <!-- Candidate Information Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-xl font-bold text-gray-900 mb-6">Your Information</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="full_name" class="block text-sm font-medium text-gray-700 mb-2">
+                            Full Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" 
+                               id="full_name" 
+                               name="full_name" 
+                               required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                               placeholder="John Smith">
+                    </div>
+                    <div>
+                        <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-2">
+                            Phone Number <span class="text-red-500">*</span>
+                        </label>
+                        <input type="tel" 
+                               id="phone_number" 
+                               name="phone_number" 
+                               required
+                               pattern="[0-9\s\-\+\(\)]{10,}"
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                               placeholder="(555) 123-4567">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            Email Address <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email" 
+                               id="email" 
+                               name="email" 
+                               required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                               placeholder="john@example.com">
+                    </div>
+                    <div>
+                        <label for="position_applied_for" class="block text-sm font-medium text-gray-700 mb-2">
+                            Position Applying For <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" 
+                               id="position_applied_for" 
+                               name="position_applied_for" 
+                               required
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                               placeholder="e.g., Software Engineer, Sales Manager">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: Leadership & Decision-Making (Dominance) -->
+            <div class="section-header">
+                <h2 class="section-title">Leadership & Decision-Making</h2>
+                <p class="section-subtitle">Questions 1-6 of 24</p>
+            </div>
+
+            <fieldset class="q-block" id="q1">
+                <legend>1. I take control when others hesitate.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q1" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q1" value="2"> Disagree</label>
+                    <label><input type="radio" name="q1" value="3"> Neutral</label>
+                    <label><input type="radio" name="q1" value="4"> Agree</label>
+                    <label><input type="radio" name="q1" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q2">
+                <legend>2. I enjoy competition and setting ambitious goals.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q2" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q2" value="2"> Disagree</label>
+                    <label><input type="radio" name="q2" value="3"> Neutral</label>
+                    <label><input type="radio" name="q2" value="4"> Agree</label>
+                    <label><input type="radio" name="q2" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q3">
+                <legend>3. I prefer to act quickly rather than overthink decisions.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q3" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q3" value="2"> Disagree</label>
+                    <label><input type="radio" name="q3" value="3"> Neutral</label>
+                    <label><input type="radio" name="q3" value="4"> Agree</label>
+                    <label><input type="radio" name="q3" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q4">
+                <legend>4. I challenge others to perform at a higher level.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q4" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q4" value="2"> Disagree</label>
+                    <label><input type="radio" name="q4" value="3"> Neutral</label>
+                    <label><input type="radio" name="q4" value="4"> Agree</label>
+                    <label><input type="radio" name="q4" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q5">
+                <legend>5. I'm comfortable taking risks to achieve results.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q5" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q5" value="2"> Disagree</label>
+                    <label><input type="radio" name="q5" value="3"> Neutral</label>
+                    <label><input type="radio" name="q5" value="4"> Agree</label>
+                    <label><input type="radio" name="q5" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q6">
+                <legend>6. I focus more on outcomes than on feelings.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q6" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q6" value="2"> Disagree</label>
+                    <label><input type="radio" name="q6" value="3"> Neutral</label>
+                    <label><input type="radio" name="q6" value="4"> Agree</label>
+                    <label><input type="radio" name="q6" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <!-- Section 2: Teamwork & Influence -->
+            <div class="section-header">
+                <h2 class="section-title">Teamwork & Influence</h2>
+                <p class="section-subtitle">Questions 7-12 of 24</p>
+            </div>
+
+            <fieldset class="q-block" id="q7">
+                <legend>7. I enjoy meeting new people and building relationships.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q7" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q7" value="2"> Disagree</label>
+                    <label><input type="radio" name="q7" value="3"> Neutral</label>
+                    <label><input type="radio" name="q7" value="4"> Agree</label>
+                    <label><input type="radio" name="q7" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q8">
+                <legend>8. I get energized when I can share ideas and inspire others.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q8" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q8" value="2"> Disagree</label>
+                    <label><input type="radio" name="q8" value="3"> Neutral</label>
+                    <label><input type="radio" name="q8" value="4"> Agree</label>
+                    <label><input type="radio" name="q8" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q9">
+                <legend>9. I naturally persuade people to see things my way.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q9" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q9" value="2"> Disagree</label>
+                    <label><input type="radio" name="q9" value="3"> Neutral</label>
+                    <label><input type="radio" name="q9" value="4"> Agree</label>
+                    <label><input type="radio" name="q9" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q10">
+                <legend>10. I thrive in group settings or team environments.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q10" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q10" value="2"> Disagree</label>
+                    <label><input type="radio" name="q10" value="3"> Neutral</label>
+                    <label><input type="radio" name="q10" value="4"> Agree</label>
+                    <label><input type="radio" name="q10" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q11">
+                <legend>11. I'm optimistic and maintain a positive attitude.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q11" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q11" value="2"> Disagree</label>
+                    <label><input type="radio" name="q11" value="3"> Neutral</label>
+                    <label><input type="radio" name="q11" value="4"> Agree</label>
+                    <label><input type="radio" name="q11" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q12">
+                <legend>12. I tend to speak more than I listen during conversations.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q12" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q12" value="2"> Disagree</label>
+                    <label><input type="radio" name="q12" value="3"> Neutral</label>
+                    <label><input type="radio" name="q12" value="4"> Agree</label>
+                    <label><input type="radio" name="q12" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <!-- Section 3: Stability & Organization -->
+            <div class="section-header">
+                <h2 class="section-title">Stability & Organization</h2>
+                <p class="section-subtitle">Questions 13-18 of 24</p>
+            </div>
+
+            <fieldset class="q-block" id="q13">
+                <legend>13. I stay calm and composed, even during stressful times.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q13" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q13" value="2"> Disagree</label>
+                    <label><input type="radio" name="q13" value="3"> Neutral</label>
+                    <label><input type="radio" name="q13" value="4"> Agree</label>
+                    <label><input type="radio" name="q13" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q14">
+                <legend>14. I value stability and predictable routines.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q14" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q14" value="2"> Disagree</label>
+                    <label><input type="radio" name="q14" value="3"> Neutral</label>
+                    <label><input type="radio" name="q14" value="4"> Agree</label>
+                    <label><input type="radio" name="q14" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q15">
+                <legend>15. I go out of my way to support others on my team.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q15" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q15" value="2"> Disagree</label>
+                    <label><input type="radio" name="q15" value="3"> Neutral</label>
+                    <label><input type="radio" name="q15" value="4"> Agree</label>
+                    <label><input type="radio" name="q15" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q16">
+                <legend>16. I'm patient when explaining things to others.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q16" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q16" value="2"> Disagree</label>
+                    <label><input type="radio" name="q16" value="3"> Neutral</label>
+                    <label><input type="radio" name="q16" value="4"> Agree</label>
+                    <label><input type="radio" name="q16" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q17">
+                <legend>17. I prefer collaboration over competition.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q17" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q17" value="2"> Disagree</label>
+                    <label><input type="radio" name="q17" value="3"> Neutral</label>
+                    <label><input type="radio" name="q17" value="4"> Agree</label>
+                    <label><input type="radio" name="q17" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q18">
+                <legend>18. I avoid conflict whenever possible.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q18" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q18" value="2"> Disagree</label>
+                    <label><input type="radio" name="q18" value="3"> Neutral</label>
+                    <label><input type="radio" name="q18" value="4"> Agree</label>
+                    <label><input type="radio" name="q18" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <!-- Section 4: Precision & Planning -->
+            <div class="section-header">
+                <h2 class="section-title">Precision & Planning</h2>
+                <p class="section-subtitle">Questions 19-24 of 24</p>
+            </div>
+
+            <fieldset class="q-block" id="q19">
+                <legend>19. I double-check my work for accuracy.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q19" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q19" value="2"> Disagree</label>
+                    <label><input type="radio" name="q19" value="3"> Neutral</label>
+                    <label><input type="radio" name="q19" value="4"> Agree</label>
+                    <label><input type="radio" name="q19" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q20">
+                <legend>20. I prefer following rules and established systems.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q20" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q20" value="2"> Disagree</label>
+                    <label><input type="radio" name="q20" value="3"> Neutral</label>
+                    <label><input type="radio" name="q20" value="4"> Agree</label>
+                    <label><input type="radio" name="q20" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q21">
+                <legend>21. I take time to analyze all sides before deciding.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q21" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q21" value="2"> Disagree</label>
+                    <label><input type="radio" name="q21" value="3"> Neutral</label>
+                    <label><input type="radio" name="q21" value="4"> Agree</label>
+                    <label><input type="radio" name="q21" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q22">
+                <legend>22. I'm motivated by doing things the "right" way.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q22" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q22" value="2"> Disagree</label>
+                    <label><input type="radio" name="q22" value="3"> Neutral</label>
+                    <label><input type="radio" name="q22" value="4"> Agree</label>
+                    <label><input type="radio" name="q22" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q23">
+                <legend>23. I'm cautious when making important decisions.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q23" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q23" value="2"> Disagree</label>
+                    <label><input type="radio" name="q23" value="3"> Neutral</label>
+                    <label><input type="radio" name="q23" value="4"> Agree</label>
+                    <label><input type="radio" name="q23" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <fieldset class="q-block" id="q24">
+                <legend>24. I'm detail-oriented and dislike sloppy work.</legend>
+                <div class="likert">
+                    <label><input type="radio" name="q24" value="1" required> Strongly Disagree</label>
+                    <label><input type="radio" name="q24" value="2"> Disagree</label>
+                    <label><input type="radio" name="q24" value="3"> Neutral</label>
+                    <label><input type="radio" name="q24" value="4"> Agree</label>
+                    <label><input type="radio" name="q24" value="5"> Strongly Agree</label>
+                </div>
+            </fieldset>
+
+            <!-- Hidden Fields for Computed Scores -->
+            <input type="hidden" name="total_D" id="total_D">
+            <input type="hidden" name="total_I" id="total_I">
+            <input type="hidden" name="total_S" id="total_S">
+            <input type="hidden" name="total_C" id="total_C">
+            <input type="hidden" name="primary_style" id="primary_style">
+            <input type="hidden" name="secondary_style" id="secondary_style">
+            <input type="hidden" name="style_vector" id="style_vector">
+
+            <!-- Submit Button -->
+            <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+                <button type="submit" 
+                        id="submitBtn"
+                        class="w-full bg-blue-600 text-white font-semibold px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition duration-200">
+                    Submit Assessment
+                </button>
+            </div>
+        </form>
+
+        <!-- Results Section (hidden initially, shown after submission) -->
+        <section id="results" class="hidden mt-8">
+            <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">✓ Submission Received</h2>
+                <p class="text-gray-700">Your DISC assessment has been successfully submitted. Here are your results:</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Your DISC Profile</h3>
+                
+                <!-- Scores -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                        <div class="text-3xl font-bold text-blue-600" id="result_D">0</div>
+                        <div class="text-sm text-gray-600">Dominance (D)</div>
+                    </div>
+                    <div class="text-center p-4 bg-green-50 rounded-lg">
+                        <div class="text-3xl font-bold text-green-600" id="result_I">0</div>
+                        <div class="text-sm text-gray-600">Influence (I)</div>
+                    </div>
+                    <div class="text-center p-4 bg-yellow-50 rounded-lg">
+                        <div class="text-3xl font-bold text-yellow-600" id="result_S">0</div>
+                        <div class="text-sm text-gray-600">Steadiness (S)</div>
+                    </div>
+                    <div class="text-center p-4 bg-purple-50 rounded-lg">
+                        <div class="text-3xl font-bold text-purple-600" id="result_C">0</div>
+                        <div class="text-sm text-gray-600">Conscientiousness (C)</div>
+                    </div>
+                </div>
+
+                <!-- Primary & Secondary Styles -->
+                <div class="border-t pt-4 mb-6">
+                    <p class="text-gray-700 mb-2">
+                        <strong>Primary Style:</strong> <span id="result_primary" class="text-blue-600 font-semibold">-</span>
+                    </p>
+                    <p class="text-gray-700">
+                        <strong>Secondary Style:</strong> <span id="result_secondary" class="text-blue-600 font-semibold">-</span>
+                    </p>
+                </div>
+
+                <!-- Style Description -->
+                <div id="styleDescription" class="border-t pt-4">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm mb-4 md:mb-0">&copy; 2025 DISC Assessment. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="/privacy.html" class="text-sm hover:text-white transition">Privacy Policy</a>
+                    <a href="mailto:contact@example.com" class="text-sm hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/disc.js"></script>
+</body>
+</html>
