@@ -120,12 +120,11 @@
      * Handle form submission
      */
     function handleSubmit(event) {
-        event.preventDefault();
-
         const form = event.target;
         
         // Validate all questions answered
         if (!validateForm(form)) {
+            event.preventDefault();
             alert('Please answer all 24 questions before submitting.');
             return;
         }
@@ -137,8 +136,10 @@
         // Populate hidden fields
         populateHiddenFields(scores);
 
-        // Submit via AJAX
-        submitViaAjax(form, scores);
+        // Allow native form submission to proceed
+        // Form will POST to Netlify Forms and redirect to /thanks.html
+        console.log('Submitting to Netlify Forms...');
+        // Don't prevent default - let the form submit naturally
     }
 
     /**
@@ -244,92 +245,5 @@
         document.getElementById('style_vector').value = scores.vector;
     }
 
-    /**
-     * Submit form via AJAX (with fallback to native submit)
-     */
-    function submitViaAjax(form, scores) {
-        const formData = new FormData(form);
-
-        fetch(window.location.pathname, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                // Success - show results inline
-                renderResults(scores);
-                // Scroll to results
-                document.getElementById('results').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-            } else {
-                // Fallback to native submit on error
-                console.warn('AJAX submit failed, falling back to native submit');
-                form.submit();
-            }
-        })
-        .catch(error => {
-            // Network error - fallback to native submit
-            console.error('AJAX submit error:', error);
-            console.log('Falling back to native form submission');
-            form.submit();
-        });
-    }
-
-    /**
-     * Render results in the #results section
-     */
-    function renderResults(scores) {
-        // Show results section
-        const resultsSection = document.getElementById('results');
-        resultsSection.classList.remove('hidden');
-
-        // Update score displays
-        document.getElementById('result_D').textContent = scores.totals.D;
-        document.getElementById('result_I').textContent = scores.totals.I;
-        document.getElementById('result_S').textContent = scores.totals.S;
-        document.getElementById('result_C').textContent = scores.totals.C;
-
-        // Update primary/secondary
-        document.getElementById('result_primary').textContent = 
-            `${STYLE_DESCRIPTIONS[scores.primary].name} (${scores.primary})`;
-        document.getElementById('result_secondary').textContent = 
-            `${STYLE_DESCRIPTIONS[scores.secondary].name} (${scores.secondary})`;
-
-        // Render style description
-        renderStyleDescription(scores.primary);
-    }
-
-    /**
-     * Render detailed description for primary style
-     */
-    function renderStyleDescription(style) {
-        const desc = STYLE_DESCRIPTIONS[style];
-        const container = document.getElementById('styleDescription');
-
-        container.innerHTML = `
-            <h4 class="text-lg font-bold text-gray-900 mb-3">${desc.name} (${style})</h4>
-            <p class="text-gray-700 mb-4">${desc.traits}</p>
-            
-            <div class="mb-4">
-                <p class="font-semibold text-gray-800 mb-2">Key Strengths:</p>
-                <p class="text-gray-700">${desc.strengths}</p>
-            </div>
-            
-            <div class="mb-4">
-                <p class="font-semibold text-gray-800 mb-2">How to Work With This Style:</p>
-                <p class="text-gray-700">${desc.worksWith}</p>
-            </div>
-            
-            <div>
-                <p class="font-semibold text-gray-800 mb-2">Best Fit Roles:</p>
-                <p class="text-gray-700">${desc.roles}</p>
-            </div>
-        `;
-    }
 
 })();
